@@ -1,5 +1,9 @@
 import React from 'react';
 
+/**
+ * Componente Checkbox global.
+ * Presenta un diseño personalizado con el color de la marca, centro blanco al activarse.
+ */
 const Checkbox = ({ label, id, checked, onChange, className = '' }) => {
   return (
     <label 

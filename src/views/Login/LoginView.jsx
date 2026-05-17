@@ -1,8 +1,8 @@
 import React, { useState } from 'react';
 import Button from '../../components/Button';
 import Checkbox from '../../components/Checkbox';
-import InputEmail from '../../components/InputEmail';
-import InputPassword from '../../components/InputPassword';
+import InputEmail from '../../components/input/types/InputEmail';
+import InputPassword from '../../components/input/types/InputPassword';
 import imagoTipo from '../../assets/ImagoTipo.png';
 
 const LoginView = ({ onBack, onRecover, onRegister }) => {

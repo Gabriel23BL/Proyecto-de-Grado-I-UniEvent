@@ -1,6 +1,9 @@
 import React from 'react';
 import Button from './Button';
 
+/**
+ * Componente CardEvent para renderizar cursos y eventos en cuadrícula.
+ */
 const CardEvent = ({ title, description, date, type, imageUrl, price = "Gratis" }) => {
   return (
     <div className="bg-white rounded-2xl overflow-hidden border border-gray-100 shadow-sm hover:shadow-xl transition-all duration-300 group flex flex-col h-full">

@@ -1,5 +1,9 @@
 import React from 'react';
 
+/**
+ * Componente Hero del Home.
+ * Presenta el mensaje principal de bienvenida y la transición visual premium.
+ */
 const Hero = () => {
   return (
     <section className="relative bg-gradient-to-r from-teal-400 to-teal-600 text-white py-20 px-6 text-center">
@@ -13,7 +17,7 @@ const Hero = () => {
         </p>
         
         {/* Botón de llamada a la acción del Hero */}
-        <button className="bg-unievents-dark text-white px-8 py-4 rounded-full text-lg font-bold shadow-lg hover:scale-105 transition-transform">
+        <button className="bg-unievents-dark text-white px-8 py-4 rounded-full text-lg font-bold shadow-lg hover:scale-105 transition-transform cursor-pointer">
           Explorar Cursos
         </button>
       </div>

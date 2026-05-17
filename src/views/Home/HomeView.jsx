@@ -3,6 +3,10 @@ import Hero from './components/Hero';
 import Button from '../../components/Button';
 import EventsBoard from '../Catalog/components/EventsBoard';
 
+/**
+ * Vista de Inicio (HomeView).
+ * Incorpora la sección Hero, la tarjeta decorativa del catálogo en vivo y los eventos en miniatura.
+ */
 const HomeView = ({ onNavigate }) => {
   return (
     <>

@@ -1,6 +1,10 @@
 import React from 'react';
 import CardEvent from '../../../components/CardEvent';
 
+/**
+ * Tablero de Eventos y Cursos (EventsBoard).
+ * Renderiza dinámicamente una lista de cursos o eventos filtrada por tipo.
+ */
 const EventsBoard = ({ title = "Cursos Disponibles", type = "curso", limit }) => {
   // Datos simulados
   const allData = [

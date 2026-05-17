@@ -1,5 +1,6 @@
 import { useState } from 'react';
 import Navbar from './components/Navbar';
+import Footer from './components/Footer';
 import HomeView from './views/Home/HomeView';
 import LoginView from './views/Login/LoginView';
 import RegisterView from './views/Register/RegisterView';
@@ -19,29 +20,27 @@ function App() {
       {/* Contenedor principal donde se inyectan las diferentes vistas */}
       <main className="flex-grow">
         {view === 'login' ? (
-          <LoginView 
-            onBack={() => setView('home')} 
-            onRecover={() => setView('recover')} 
-            onRegister={() => setView('register')} 
+          <LoginView
+            onBack={() => setView('home')}
+            onRecover={() => setView('recover')}
+            onRegister={() => setView('register')}
           />
         ) : view === 'recover' ? (
           <RecoverPasswordView onBack={() => setView('login')} />
         ) : view === 'register' ? (
           <RegisterView onBack={() => setView('home')} />
         ) : view === 'cursos' || view === 'eventos' ? (
-          <CatalogView 
-            key={view} 
-            type={view === 'cursos' ? 'curso' : 'evento'} 
+          <CatalogView
+            key={view}
+            type={view === 'cursos' ? 'curso' : 'evento'}
           />
         ) : (
           <HomeView onNavigate={setView} />
         )}
       </main>
 
-      {/* Pie de página persistente */}
-      <footer className="py-12 border-t border-gray-100 text-center text-gray-500 bg-white">
-        <p>© 2026 UniEvent. Todos los derechos reservados.</p>
-      </footer>
+      {/* Pie de página global persistente */}
+      <Footer />
     </div>
   );
 }

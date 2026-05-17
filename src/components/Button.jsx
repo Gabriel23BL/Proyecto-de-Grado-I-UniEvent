@@ -1,5 +1,9 @@
 import React from 'react';
 
+/**
+ * Componente Button global.
+ * Proporciona un botón premium y altamente reutilizable con variantes integradas.
+ */
 const Button = ({ children, onClick, variant = 'primary', type = 'button', className = '' }) => {
   // Estilos base compartidos por todos los botones
   const baseStyles = 'px-6 py-2 rounded-lg font-semibold transition-all duration-200 focus:outline-none focus:ring-2 focus:ring-offset-2';
