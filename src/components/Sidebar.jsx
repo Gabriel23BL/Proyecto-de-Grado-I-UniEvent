@@ -84,7 +84,7 @@ const Sidebar = ({ activeTab, onTabChange, onLogout, isMobileOpen, onMobileClose
 
       <aside className={`
         fixed inset-y-0 left-0 z-50 w-64 bg-gradient-to-b from-teal-400 via-teal-500 to-teal-600 text-white flex flex-col justify-between py-8 px-4 shadow-2xl transition-all duration-300
-        lg:static lg:translate-x-0 lg:flex shrink-0 h-screen sticky top-0
+        lg:sticky lg:top-0 lg:h-screen lg:flex lg:translate-x-0 shrink-0
         ${isMobileOpen ? 'flex translate-x-0' : 'hidden lg:flex -translate-x-full lg:translate-x-0'}
       `}>
       {/* Estilos locales para animación de acordeón suave descendente */}
