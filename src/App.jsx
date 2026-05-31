@@ -6,16 +6,19 @@ import LoginView from './views/Login/LoginView';
 import RegisterView from './views/Register/RegisterView';
 import RecoverPasswordView from './views/RecoverPassword/RecoverPasswordView';
 import CatalogView from './views/Catalog/CatalogView';
+import Dashboard from './views/Student/Dashboard/Dashboard';
 import './App.css';
 
 function App() {
   // Estado que controla qué vista se muestra actualmente
-  const [view, setView] = useState('home'); // 'home', 'login', 'register', 'recover', 'cursos', 'eventos'
+  const [view, setView] = useState('home'); // 'home', 'login', 'register', 'recover', 'cursos', 'eventos', 'student-dashboard'
+
+  const isDashboardView = view === 'student-dashboard';
 
   return (
     <div className="min-h-screen bg-unievents-bg text-gray-900 flex flex-col">
       {/* El Navbar recibe la función setView para permitir la navegación global */}
-      <Navbar onNavigate={setView} />
+      {!isDashboardView && <Navbar onNavigate={setView} />}
 
       {/* Contenedor principal donde se inyectan las diferentes vistas */}
       <main className="flex-grow">
@@ -24,6 +27,7 @@ function App() {
             onBack={() => setView('home')}
             onRecover={() => setView('recover')}
             onRegister={() => setView('register')}
+            onLoginSuccess={() => setView('student-dashboard')}
           />
         ) : view === 'recover' ? (
           <RecoverPasswordView onBack={() => setView('login')} />
@@ -34,13 +38,15 @@ function App() {
             key={view}
             type={view === 'cursos' ? 'curso' : 'evento'}
           />
+        ) : view === 'student-dashboard' ? (
+          <Dashboard onLogout={() => setView('home')} />
         ) : (
           <HomeView onNavigate={setView} />
         )}
       </main>
 
       {/* Pie de página global persistente */}
-      <Footer />
+      {!isDashboardView && <Footer />}
     </div>
   );
 }

@@ -4,7 +4,26 @@ import Button from './Button';
 /**
  * Componente CardEvent para renderizar cursos y eventos en cuadrícula.
  */
-const CardEvent = ({ title, description, date, type, imageUrl, price = "Gratis" }) => {
+const CardEvent = ({ 
+  title, 
+  description, 
+  date, 
+  type, 
+  imageUrl, 
+  price = "Gratis", 
+  category, 
+  status, 
+  statusType = 'success', 
+  hidePrice = false,
+  onVerMas
+}) => {
+  // Configuración de estilos para el badge de estado
+  const statusStyles = {
+    success: 'bg-emerald-100 text-emerald-800 border border-emerald-200',
+    warning: 'bg-amber-100 text-amber-800 border border-amber-200',
+    danger: 'bg-rose-100 text-rose-800 border border-rose-200',
+  };
+
   return (
     <div className="bg-white rounded-2xl overflow-hidden border border-gray-100 shadow-sm hover:shadow-xl transition-all duration-300 group flex flex-col h-full">
       {/* Contenedor de la Imagen y Etiqueta */}
@@ -22,9 +41,9 @@ const CardEvent = ({ title, description, date, type, imageUrl, price = "Gratis" 
             </svg>
           </div>
         )}
-        {/* Etiqueta dinámica de tipo (Curso/Evento) */}
-        <div className="absolute top-4 left-4 bg-white/90 backdrop-blur px-3 py-1 rounded-full text-xs font-bold text-unievents-teal uppercase tracking-wider shadow-sm">
-          {type === 'curso' ? 'Curso' : 'Evento'}
+        {/* Etiqueta dinámica de tipo o categoría */}
+        <div className="absolute top-4 left-4 bg-white/95 backdrop-blur px-3 py-1 rounded-full text-xs font-bold text-unievents-teal uppercase tracking-wider shadow-sm">
+          {category || (type === 'curso' ? 'Curso' : 'Evento')}
         </div>
       </div>
       
@@ -43,10 +62,22 @@ const CardEvent = ({ title, description, date, type, imageUrl, price = "Gratis" 
           {description}
         </p>
         
-        {/* Pie de la Tarjeta con Precio y Botón */}
+        {/* Pie de la Tarjeta con Precio/Estado y Botón */}
         <div className="flex items-center justify-between mt-auto pt-4 border-t border-gray-50">
-          <span className="text-2xl font-black text-unievents-teal">{price}</span>
-          <Button variant="secondary" className="!px-4 !py-1 text-sm border-unievents-teal text-unievents-teal hover:bg-unievents-teal hover:text-white">
+          {!hidePrice ? (
+            <span className="text-2xl font-black text-unievents-teal">{price}</span>
+          ) : (
+            status && (
+              <span className={`px-3 py-1 rounded-full text-xs font-bold ${statusStyles[statusType] || statusStyles.success}`}>
+                {status}
+              </span>
+            )
+          )}
+          <Button 
+            onClick={onVerMas}
+            variant="secondary" 
+            className="!px-4 !py-1 text-sm border-unievents-teal text-unievents-teal hover:bg-unievents-teal hover:text-white"
+          >
             Ver más
           </Button>
         </div>

@@ -5,12 +5,19 @@ import InputEmail from '../../components/input/types/InputEmail';
 import InputPassword from '../../components/input/types/InputPassword';
 import imagoTipo from '../../assets/ImagoTipo.png';
 
-const LoginView = ({ onBack, onRecover, onRegister }) => {
+const LoginView = ({ onBack, onRecover, onRegister, onLoginSuccess }) => {
   const [rememberMe, setRememberMe] = useState(false);
   const [formData, setFormData] = useState({ email: '', password: '' });
 
   const handleChange = (e) => {
     setFormData({ ...formData, [e.target.name]: e.target.value });
+  };
+
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    if (onLoginSuccess) {
+      onLoginSuccess();
+    }
   };
 
   return (
@@ -23,7 +30,7 @@ const LoginView = ({ onBack, onRecover, onRegister }) => {
         <h2 className="text-3xl font-bold text-unievents-dark mb-10 cursor-pointer" onClick={onBack}>Ingresa a tu cuenta</h2>
 
         {/* Formulario de Inicio de Sesión */}
-        <form className="space-y-6 text-left">
+        <form onSubmit={handleSubmit} className="space-y-6 text-left">
           <InputEmail
             value={formData.email}
             onChange={handleChange}
