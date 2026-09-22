@@ -1,29 +1,38 @@
+'use client';
+
 import React, { useState } from 'react';
+import Link from 'next/link';
+import { useRouter } from 'next/navigation';
 import isoTipo from '../assets/IsoTipo.png';
 import Button from './Button';
 
-const Navbar = ({ onNavigate }) => {
+const Navbar = () => {
+  const router = useRouter();
   const [isOpen, setIsOpen] = useState(false);
 
-  // Función para manejar la navegación y cerrar el menú móvil
-  const handleNavigate = (view) => {
-    onNavigate(view);
+  // Función para navegar y cerrar el menú móvil (usada por el Button de Inicia Sesión)
+  const handleNavigate = (path) => {
+    router.push(path);
     setIsOpen(false);
   };
 
+  // Función para cerrar el menú móvil al navegar
+  const closeMenu = () => setIsOpen(false);
+
   return (
-    <nav className="bg-unievents-bg shadow-md sticky top-0 z-50 px-6 py-4">
+    <nav className="bg-unievents-bg/90 backdrop-blur-md shadow-sm border-b border-teal-900/5 sticky top-0 z-50 px-6 py-4">
       <div className="flex justify-between items-center max-w-7xl mx-auto">
         {/* Logotipo interactivo con IsoTipo */}
-        <div
+        <Link
+          href="/"
           className="flex items-center gap-2 cursor-pointer"
-          onClick={() => handleNavigate('home')}
+          onClick={closeMenu}
         >
-          <img src={isoTipo} alt="UniEvent Logo" className="w-10 h-10 object-contain" />
+          <img src={isoTipo.src} alt="UniEvent Logo" className="w-10 h-10 object-contain" />
           <span className="text-2xl font-bold text-unievents-teal tracking-tight">
             UniEvent
           </span>
-        </div>
+        </Link>
 
         {/* Botón Menú Hamburguesa (Móvil) */}
         <button 
@@ -41,29 +50,29 @@ const Navbar = ({ onNavigate }) => {
 
         {/* Enlaces de Navegación (Escritorio) */}
         <div className="hidden md:flex space-x-8 items-center">
-          <button 
-            className="text-gray-600 hover:text-unievents-teal font-medium transition" 
-            onClick={() => handleNavigate('cursos')}
+          <Link
+            href="/cursos"
+            className="text-gray-600 hover:text-unievents-teal font-medium transition"
           >
             Cursos
-          </button>
-          <button 
-            className="text-gray-600 hover:text-unievents-teal font-medium transition" 
-            onClick={() => handleNavigate('eventos')}
+          </Link>
+          <Link
+            href="/eventos"
+            className="text-gray-600 hover:text-unievents-teal font-medium transition"
           >
             Eventos
-          </button>
-          <button 
+          </Link>
+          <Link
+            href="/register"
             className="text-gray-600 hover:text-unievents-teal font-medium transition"
-            onClick={() => handleNavigate('register')}
           >
             Regístrate
-          </button>
-          
-          <Button 
-            variant="primary" 
+          </Link>
+
+          <Button
+            variant="primary"
             className="!px-5 !py-2 shadow-md"
-            onClick={() => handleNavigate('login')}
+            onClick={() => handleNavigate('/login')}
           >
             Inicia Sesión
           </Button>
@@ -77,29 +86,32 @@ const Navbar = ({ onNavigate }) => {
         }`}
       >
         <div className="flex flex-col space-y-4 pb-4">
-          <button 
-            className="text-left text-gray-600 hover:text-unievents-teal font-medium py-2 border-b border-gray-100" 
-            onClick={() => handleNavigate('cursos')}
+          <Link
+            href="/cursos"
+            className="text-left text-gray-600 hover:text-unievents-teal font-medium py-2 border-b border-gray-100"
+            onClick={closeMenu}
           >
             Cursos
-          </button>
-          <button 
-            className="text-left text-gray-600 hover:text-unievents-teal font-medium py-2 border-b border-gray-100" 
-            onClick={() => handleNavigate('eventos')}
+          </Link>
+          <Link
+            href="/eventos"
+            className="text-left text-gray-600 hover:text-unievents-teal font-medium py-2 border-b border-gray-100"
+            onClick={closeMenu}
           >
             Eventos
-          </button>
-          <button 
+          </Link>
+          <Link
+            href="/register"
             className="text-left text-gray-600 hover:text-unievents-teal font-medium py-2 border-b border-gray-100"
-            onClick={() => handleNavigate('register')}
+            onClick={closeMenu}
           >
             Regístrate
-          </button>
-          
-          <Button 
-            variant="primary" 
+          </Link>
+
+          <Button
+            variant="primary"
             className="w-full !py-3 shadow-md"
-            onClick={() => handleNavigate('login')}
+            onClick={() => handleNavigate('/login')}
           >
             Inicia Sesión
           </Button>

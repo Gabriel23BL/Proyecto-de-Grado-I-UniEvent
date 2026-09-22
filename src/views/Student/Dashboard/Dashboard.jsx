@@ -1,4 +1,7 @@
+'use client';
+
 import React, { useState } from 'react';
+import { useRouter } from 'next/navigation';
 import Button from '../../../components/Button';
 import CardEvent from '../../../components/CardEvent';
 import Sidebar from '../../../components/Sidebar';
@@ -14,7 +17,8 @@ import imagoTipo from '../../../assets/ImagoTipo.png';
  * Vista de Dashboard de Estudiante (Dashboard.jsx).
  * Muestra un panel central interactivo y delega la barra lateral al componente global Sidebar.
  */
-const Dashboard = ({ onLogout }) => {
+const Dashboard = () => {
+  const router = useRouter();
   // Pestaña activa del dashboard
   const [activeTab, setActiveTab] = useState('inicio');
 
@@ -81,7 +85,7 @@ const Dashboard = ({ onLogout }) => {
       category: "TECNOLOGÍA",
       status: "Cupos disponibles",
       statusType: "success",
-      imageUrl: dataAnalysisImg
+      imageUrl: dataAnalysisImg.src
     },
     {
       id: 8,
@@ -96,7 +100,7 @@ const Dashboard = ({ onLogout }) => {
       category: "DISEÑO",
       status: "Pocos cupos",
       statusType: "warning",
-      imageUrl: uxUiImg
+      imageUrl: uxUiImg.src
     }
   ];
 
@@ -116,7 +120,7 @@ const Dashboard = ({ onLogout }) => {
           setActiveTab(tab);
           setIsMobileMenuOpen(false);
         }} 
-        onLogout={onLogout} 
+        onLogout={() => router.push('/')}
         isMobileOpen={isMobileMenuOpen}
         onMobileClose={() => setIsMobileMenuOpen(false)}
       />
@@ -127,8 +131,8 @@ const Dashboard = ({ onLogout }) => {
         {/* Cabecera Superior del Dashboard */}
         <header className="px-5 lg:px-8 py-5 flex items-center bg-[#fefce8] border-b border-yellow-100 sticky top-0 z-30">
           {/* Logo ImagoTipo para móviles (antes del botón hamburguesa) */}
-          <img 
-            src={imagoTipo} 
+          <img
+            src={imagoTipo.src}
             alt="UniEvent Logo Mobile" 
             className="lg:hidden w-12 h-12 object-contain mr-3 shrink-0 select-none"
           />

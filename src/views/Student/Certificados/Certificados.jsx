@@ -1,3 +1,5 @@
+'use client';
+
 import React, { useState } from 'react';
 import jsPDF from 'jspdf';
 import Button from '../../../components/Button';
@@ -57,7 +59,7 @@ const Certificados = () => {
 
       // Cargar la imagen del template de certificado en base64 o como objeto imagen
       const img = new Image();
-      img.src = templateCertificado;
+      img.src = templateCertificado.src;
 
       img.onload = () => {
         // Dibujamos el template de fondo
@@ -217,8 +219,8 @@ const Certificados = () => {
               <div className="relative w-full max-w-3xl aspect-[4/3] bg-white rounded-xl shadow-lg border border-gray-200/60 overflow-hidden select-none">
                 
                 {/* Imagen del Template de Fondo */}
-                <img 
-                  src={templateCertificado} 
+                <img
+                  src={templateCertificado.src}
                   alt="Template Certificado Oficial UniEvent" 
                   className="w-full h-full object-cover pointer-events-none"
                 />

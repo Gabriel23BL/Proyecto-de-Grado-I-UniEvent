@@ -7,7 +7,7 @@ const StepIndicator = ({ currentStep, totalSteps = 3 }) => {
         <div key={step} className="flex items-center">
           {/* Círculo del paso */}
           <div
-            className={`w-10 h-10 rounded-full flex items-center justify-center font-bold border-2 transition-all duration-300 ${
+            className={`w-10 h-10 rounded-full flex items-center justify-center font-bold border-2 transition-all duration-1000 ${
               step <= currentStep
                 ? 'bg-unievents-teal border-unievents-teal text-white'
                 : 'bg-white border-gray-300 text-gray-400'
@@ -15,13 +15,15 @@ const StepIndicator = ({ currentStep, totalSteps = 3 }) => {
           >
             {step}
           </div>
-          {/* Línea conectora entre pasos */}
+          {/* Línea conectora entre pasos, se rellena animada */}
           {step < totalSteps && (
-            <div
-              className={`w-12 h-1 ml-4 rounded ${
-                step < currentStep ? 'bg-unievents-teal' : 'bg-gray-200'
-              }`}
-            />
+            <div className="w-12 h-1 ml-4 rounded bg-gray-200 overflow-hidden">
+              <div
+                className={`h-full bg-unievents-teal rounded origin-left transition-transform duration-1000 ease-out ${
+                  step < currentStep ? 'scale-x-100' : 'scale-x-0'
+                }`}
+              />
+            </div>
           )}
         </div>
       ))}

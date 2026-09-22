@@ -1,11 +1,15 @@
+'use client';
+
 import React, { useState } from 'react';
+import { useRouter } from 'next/navigation';
 import Button from '../../components/Button';
 import Checkbox from '../../components/Checkbox';
 import InputEmail from '../../components/input/types/InputEmail';
 import InputPassword from '../../components/input/types/InputPassword';
 import imagoTipo from '../../assets/ImagoTipo.png';
 
-const LoginView = ({ onBack, onRecover, onRegister, onLoginSuccess }) => {
+const LoginView = () => {
+  const router = useRouter();
   const [rememberMe, setRememberMe] = useState(false);
   const [formData, setFormData] = useState({ email: '', password: '' });
 
@@ -15,19 +19,21 @@ const LoginView = ({ onBack, onRecover, onRegister, onLoginSuccess }) => {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    if (onLoginSuccess) {
-      onLoginSuccess();
-    }
+    router.push('/student-dashboard');
   };
 
   return (
-    <div className="min-h-[70vh] flex items-center justify-center bg-gradient-to-br from-teal-400 to-teal-600 py-20 px-6">
-      <div className="bg-unievents-bg p-8 rounded-2xl shadow-xl w-full max-w-md text-center">
+    <div className="relative min-h-[70vh] flex items-center justify-center bg-gradient-to-br from-teal-400 to-teal-600 py-20 px-6 overflow-hidden">
+      {/* Formas decorativas difuminadas de fondo */}
+      <div className="absolute -top-20 -left-20 w-72 h-72 bg-white/10 rounded-full blur-3xl pointer-events-none" />
+      <div className="absolute -bottom-24 -right-10 w-80 h-80 bg-unievents-dark/20 rounded-full blur-3xl pointer-events-none" />
+
+      <div className="relative bg-unievents-bg p-8 rounded-2xl shadow-2xl shadow-black/20 border border-white/20 w-full max-w-md text-center">
         {/* Logotipo Imagotipo */}
-        <img src={imagoTipo} alt="UniEvent Full Logo" className="w-40 mx-auto mb-2" />
+        <img src={imagoTipo.src} alt="UniEvent Full Logo" className="w-40 mx-auto mb-2" />
 
         {/* Título y retorno al inicio */}
-        <h2 className="text-3xl font-bold text-unievents-dark mb-10 cursor-pointer" onClick={onBack}>Ingresa a tu cuenta</h2>
+        <h2 className="text-3xl font-bold text-unievents-dark mb-10 cursor-pointer" onClick={() => router.push('/')}>Ingresa a tu cuenta</h2>
 
         {/* Formulario de Inicio de Sesión */}
         <form onSubmit={handleSubmit} className="space-y-6 text-left">
@@ -56,13 +62,13 @@ const LoginView = ({ onBack, onRecover, onRegister, onLoginSuccess }) => {
         {/* Enlaces a otras vistas */}
         <div className="mt-8 pt-6 border-t border-gray-200">
           <button
-            onClick={onRecover}
+            onClick={() => router.push('/recover')}
             className="block w-full text-sm text-unievents-teal font-bold hover:underline mb-2 text-center"
           >
             ¿Olvidaste tu contraseña?
           </button>
           <p className="text-sm text-gray-500">
-            ¿No tienes cuenta? <button onClick={onRegister} className="text-unievents-teal font-bold hover:underline ml-1">Regístrate aquí</button>
+            ¿No tienes cuenta? <button onClick={() => router.push('/register')} className="text-unievents-teal font-bold hover:underline ml-1">Regístrate aquí</button>
           </p>
         </div>
       </div>

@@ -1,3 +1,5 @@
+'use client';
+
 import React, { useState } from 'react';
 import CardEvent from '../../../components/CardEvent';
 import Button from '../../../components/Button';

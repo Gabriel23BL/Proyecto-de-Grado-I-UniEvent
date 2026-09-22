@@ -2,11 +2,11 @@ import imagoTipo from '../assets/ImagoTipo.png';
 
 const Footer = () => {
   return (
-    <footer className="bg-unievents-gradient border-t border-gray-100 py-2 px-6">
+    <footer className="bg-gradient-to-r from-teal-50 via-unievents-bg to-teal-50 border-t border-teal-100 py-6 px-6">
       <div className="max-w-7xl mx-auto flex flex-col md:flex-row justify-between items-center gap-8">
         {/* Identidad en el Footer - Logotipo Completo */}
         <div className="flex items-center">
-          <img src={imagoTipo} alt="UniEvent Logo" className="w-15 h-auto opacity-90" />
+          <img src={imagoTipo.src} alt="UniEvent Logo" className="w-15 h-auto opacity-90" />
         </div>
 
         {/* Copyright y Texto Legal */}
