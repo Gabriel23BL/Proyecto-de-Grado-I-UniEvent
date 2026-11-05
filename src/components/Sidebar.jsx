@@ -1,3 +1,5 @@
+'use client';
+
 import React, { useState, useEffect } from 'react';
 import isoTipo from '../assets/IsoTipo.png';
 
@@ -110,7 +112,7 @@ const Sidebar = ({ activeTab, onTabChange, onLogout, isMobileOpen, onMobileClose
         {/* Logo / Branding interactivo con IsoTipo (w-15 h-15) y Título */}
         <div className="flex items-center justify-between px-2 select-none">
           <div className="flex items-center gap-2">
-            <img src={isoTipo} alt="UniEvent Logo" className="w-12 h-12 sm:w-15 sm:h-15 object-contain shrink-0" />
+            <img src={isoTipo.src} alt="UniEvent Logo" className="w-12 h-12 sm:w-15 sm:h-15 object-contain shrink-0" />
             <h1 className="text-xl sm:text-2xl font-black tracking-wider text-teal-50 drop-shadow-sm">
               UniEvent
             </h1>

@@ -1,12 +1,20 @@
+'use client';
+
+import { useRouter } from 'next/navigation';
 import Button from '../../components/Button';
 import imagoTipo from '../../assets/ImagoTipo.png';
 
-const RecoverPasswordView = ({ onBack }) => {
+const RecoverPasswordView = () => {
+  const router = useRouter();
   return (
-    <div className="min-h-[100vh] flex items-center justify-center bg-gradient-to-br from-teal-400 to-teal-600 py-20 px-6">
-      <div className="bg-unievents-bg p-8 rounded-2xl shadow-xl w-full max-w-md text-center">
+    <div className="relative min-h-[100vh] flex items-center justify-center bg-gradient-to-br from-teal-400 to-teal-600 py-20 px-6 overflow-hidden">
+      {/* Formas decorativas difuminadas de fondo */}
+      <div className="absolute -top-20 -left-20 w-72 h-72 bg-white/10 rounded-full blur-3xl pointer-events-none" />
+      <div className="absolute -bottom-24 -right-10 w-80 h-80 bg-unievents-dark/20 rounded-full blur-3xl pointer-events-none" />
+
+      <div className="relative bg-unievents-bg p-8 rounded-2xl shadow-2xl shadow-black/20 border border-white/20 w-full max-w-md text-center">
         {/* Logotipo Imagotipo */}
-        <img src={imagoTipo} alt="UniEvent Full Logo" className="w-40 mx-auto mb-2" />
+        <img src={imagoTipo.src} alt="UniEvent Full Logo" className="w-40 mx-auto mb-2" />
         <p className="text-gray-600 mb-8 font-medium">Recuperar contraseña</p>
 
         {/* Formulario de Recuperación */}
@@ -31,7 +39,7 @@ const RecoverPasswordView = ({ onBack }) => {
         {/* Enlace de retorno al flujo de acceso */}
         <div className="mt-8">
           <button
-            onClick={onBack}
+            onClick={() => router.push('/login')}
             className="text-sm text-unievents-teal font-bold hover:underline flex items-center justify-center w-full"
           >
             <span className="mr-2">←</span> Volver al inicio de sesión
